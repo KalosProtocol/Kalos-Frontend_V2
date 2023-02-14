@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { Flex, useMatchBreakpointsContext } from '@pancakeswap/uikit'
-import KalosVaultCard from 'views/Pools/components/KalosVaultCard'
+import XaloVaultCard from 'views/Pools/components/XaloVaultCard'
 import { usePoolsWithVault } from 'state/pools/hooks'
 import IfoPoolVaultCardMobile from './IfoPoolVaultCardMobile'
 import IfoVesting from './IfoVesting/index'
@@ -16,7 +16,7 @@ const IfoPoolVaultCard = () => {
       {isSmallerThanXl ? (
         <IfoPoolVaultCardMobile pool={xaloPool} />
       ) : (
-        <KalosVaultCard pool={xaloPool} showStakedOnly={false} showICake />
+        <XaloVaultCard pool={xaloPool} showStakedOnly={false} showICake />
       )}
       <IfoVesting pool={xaloPool} />
     </Flex>

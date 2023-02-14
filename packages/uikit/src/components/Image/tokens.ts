@@ -14,7 +14,7 @@ const tokens = {
   xalo: {
     symbol: "XALO",
     address: {
-      56: "0x0739138e18B0273d8375F83EF5351d68E9285f1E",
+      56: "0xE9E9b8001d86C36F971d046D64983738599C7385",
       97: "0xa35062141Fa33BCA92Ce69FeD37D0E8908868AAe",
     },
     decimals: 18,

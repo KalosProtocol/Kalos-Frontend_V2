@@ -12,7 +12,7 @@ import { multicallv2 } from 'utils/multicall'
 import useSWR from 'swr'
 import { SLOW_INTERVAL } from 'config/constants'
 import { BigNumber } from '@ethersproject/bignumber'
-import { getKalosVaultContract, } from 'utils/contractHelpers'
+import { getXaloVaultV2Contract } from 'utils/contractHelpers'
 
 const StyledColumn = styled(Flex)<{ noMobileBorder?: boolean; noDesktopBorder?: boolean }>`
   flex-direction: column;
@@ -72,8 +72,8 @@ const emissionsPerBlock = 30
  * https://twitter.com/PancakeSwap/status/1523913527626702849
  * https://bscscan.com/tx/0xd5ffea4d9925d2f79249a4ce05efd4459ed179152ea5072a2df73cd4b9e88ba7
  */
-const planetFinanceBurnedTokensWei = BigNumber.from('1000000000000000000000')
-const KalosVault = getKalosVaultContract()
+const planetFinanceBurnedTokensWei = BigNumber.from('000000')
+const xaloVault = getXaloVaultV2Contract()
 
 const CakeDataRow = () => {
   const { t } = useTranslation()
@@ -92,13 +92,13 @@ const CakeDataRow = () => {
       const burnedTokenCall = {
         address: tokens.xalo.address,
         name: 'balanceOf',
-        params: ['0xc7799E49e05e2C868e5802Cec514a65061c68C02'],
+        params: ['0x000000000000000000000000000000000000dEaD'],
       }
       const [tokenDataResultRaw, totalLockedAmount] = await Promise.all([
         multicallv2(xaloAbi, [totalSupplyCall, burnedTokenCall], {
           requireSuccess: false,
         }),
-        KalosVault.totalLockedAmount(),
+        xaloVault.totalLockedAmount(),
       ])
       const [totalSupply, burned] = tokenDataResultRaw.flat()
 
@@ -170,7 +170,7 @@ const CakeDataRow = () => {
       <StyledColumn style={{ gridArea: 'f' }}>
         <Text color="textSubtle">{t('Current emissions')}</Text>
 
-        <Heading scale="lg">{t('%xaloEmissions%/block', { xaloEmissions: emissionsPerBlock })}</Heading>
+        <Heading scale="lg">{t('%cakeEmissions%/block', { cakeEmissions: emissionsPerBlock })}</Heading>
       </StyledColumn>
     </Grid>
   )

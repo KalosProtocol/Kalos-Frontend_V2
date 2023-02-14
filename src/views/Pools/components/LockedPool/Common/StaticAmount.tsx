@@ -15,7 +15,7 @@ const StaticAmount: React.FC<StaticAmountPropsType> = ({
   return (
     <>
       <Text color="textSubtle" textTransform="uppercase" bold fontSize="12px">
-        {t('Add XALO to lock')}
+        {t('Add CAKE to lock')}
       </Text>
       <Flex alignItems="center" justifyContent="space-between" mb="16px">
         <Box>

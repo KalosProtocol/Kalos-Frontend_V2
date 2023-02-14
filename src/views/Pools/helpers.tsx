@@ -52,7 +52,7 @@ export const getAprData = (pool: DeserializedPool, performanceFee: number) => {
   return { apr, autoCompoundFrequency }
 }
 
-export const getKalosVaultEarnings = (
+export const getXaloVaultEarnings = (
   account: string,
   xaloAtLastUserAction: BigNumber,
   userShares: BigNumber,

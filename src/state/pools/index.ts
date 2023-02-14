@@ -5,16 +5,16 @@ import {
   PoolsState,
   SerializedPool,
   SerializedVaultFees,
-  SerializedKalosVault,
+  SerializedXaloVault,
   SerializedLockedVaultUser,
   PublicIfoData,
   SerializedVaultUser,
-  SerializedLockedKalosVault,
+  SerializedLockedXaloVault,
 } from 'state/types'
 import { getPoolApr } from 'utils/apr'
 import { BIG_ZERO } from 'utils/bigNumber'
 import xaloAbi from 'config/abi/xalo.json'
-import { getKalosVaultAddress, getXaloFlexibleSideVaultAddress } from 'utils/addressHelpers'
+import { getXaloVaultAddress, getXaloFlexibleSideVaultAddress } from 'utils/addressHelpers'
 import { multicallv2 } from 'utils/multicall'
 import tokens from 'config/constants/tokens'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -81,7 +81,7 @@ const initialState: PoolsState = {
   xaloFlexibleSideVault: initialPoolVaultState,
 }
 
-const kalosVaultAddress = getKalosVaultAddress()
+const xaloVaultAddress = getXaloVaultAddress()
 
 export const fetchXaloPoolPublicDataAsync = () => async (dispatch, getState) => {
   const farmsData = getState().farms.data
@@ -110,7 +110,7 @@ export const fetchXaloPoolUserDataAsync = (account: string) => async (dispatch) 
   const allowanceCall = {
     address: tokens.xalo.address,
     name: 'allowance',
-    params: [account, kalosVaultAddress],
+    params: [account, xaloVaultAddress],
   }
   const balanceOfCall = {
     address: tokens.xalo.address,
@@ -291,7 +291,7 @@ export const updateUserPendingReward = createAsyncThunk<
   return { sousId, field: 'pendingReward', value: pendingRewards[sousId] }
 })
 
-export const fetchKalosVaultPublicData = createAsyncThunk<SerializedLockedKalosVault>(
+export const fetchXaloVaultPublicData = createAsyncThunk<SerializedLockedXaloVault>(
   'xaloVault/fetchPublicData',
   async () => {
     const publicVaultInfo = await fetchPublicVaultData()
@@ -299,7 +299,7 @@ export const fetchKalosVaultPublicData = createAsyncThunk<SerializedLockedKalosV
   },
 )
 
-export const fetchXaloFlexibleSideVaultPublicData = createAsyncThunk<SerializedKalosVault>(
+export const fetchXaloFlexibleSideVaultPublicData = createAsyncThunk<SerializedXaloVault>(
   'xaloFlexibleSideVault/fetchPublicData',
   async () => {
     const publicVaultInfo = await fetchPublicFlexibleSideVaultData()
@@ -307,8 +307,8 @@ export const fetchXaloFlexibleSideVaultPublicData = createAsyncThunk<SerializedK
   },
 )
 
-export const fetchKalosVaultFees = createAsyncThunk<SerializedVaultFees>('kalosVault/fetchFees', async () => {
-  const vaultFees = await fetchVaultFees(getKalosVaultAddress())
+export const fetchXaloVaultFees = createAsyncThunk<SerializedVaultFees>('xaloVault/fetchFees', async () => {
+  const vaultFees = await fetchVaultFees(getXaloVaultAddress())
   return vaultFees
 })
 
@@ -320,8 +320,8 @@ export const fetchXaloFlexibleSideVaultFees = createAsyncThunk<SerializedVaultFe
   },
 )
 
-export const fetchKalosVaultUserData = createAsyncThunk<SerializedLockedVaultUser, { account: string }>(
-  'kalosVault/fetchUser',
+export const fetchXaloVaultUserData = createAsyncThunk<SerializedLockedVaultUser, { account: string }>(
+  'xaloVault/fetchUser',
   async ({ account }) => {
     const userData = await fetchVaultUser(account)
     return userData
@@ -413,17 +413,17 @@ export const PoolsSlice = createSlice({
       console.error('[Pools Action] Error fetching pool user data', action.payload)
     })
     // Vault public data that updates frequently
-    builder.addCase(fetchKalosVaultPublicData.fulfilled, (state, action: PayloadAction<SerializedLockedKalosVault>) => {
+    builder.addCase(fetchXaloVaultPublicData.fulfilled, (state, action: PayloadAction<SerializedLockedXaloVault>) => {
       state.xaloVault = { ...state.xaloVault, ...action.payload }
     })
     builder.addCase(
       fetchXaloFlexibleSideVaultPublicData.fulfilled,
-      (state, action: PayloadAction<SerializedKalosVault>) => {
+      (state, action: PayloadAction<SerializedXaloVault>) => {
         state.xaloFlexibleSideVault = { ...state.xaloFlexibleSideVault, ...action.payload }
       },
     )
     // Vault fees
-    builder.addCase(fetchKalosVaultFees.fulfilled, (state, action: PayloadAction<SerializedVaultFees>) => {
+    builder.addCase(fetchXaloVaultFees.fulfilled, (state, action: PayloadAction<SerializedVaultFees>) => {
       const fees = action.payload
       state.xaloVault = { ...state.xaloVault, fees }
     })
@@ -432,7 +432,7 @@ export const PoolsSlice = createSlice({
       state.xaloFlexibleSideVault = { ...state.xaloFlexibleSideVault, fees }
     })
     // Vault user data
-    builder.addCase(fetchKalosVaultUserData.fulfilled, (state, action: PayloadAction<SerializedLockedVaultUser>) => {
+    builder.addCase(fetchXaloVaultUserData.fulfilled, (state, action: PayloadAction<SerializedLockedVaultUser>) => {
       const userData = action.payload
       state.xaloVault = { ...state.xaloVault, userData }
     })

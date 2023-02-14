@@ -4,7 +4,7 @@ import { DeserializedPool, VaultKey, DeserializedPoolLockedVault } from 'state/t
 import Balance from 'components/Balance'
 import { useVaultPoolByKey } from 'state/pools/hooks'
 import { useTranslation } from 'contexts/Localization'
-import { getKalosVaultEarnings } from 'views/Pools/helpers'
+import { getXaloVaultEarnings } from 'views/Pools/helpers'
 import BaseCell, { CellContent } from './BaseCell'
 import AutoEarningsBreakdown from '../../AutoEarningsBreakdown'
 
@@ -34,13 +34,13 @@ const AutoEarningsCell: React.FC<AutoEarningsCellProps> = ({ pool, account }) =>
     userData: { userShares, xaloAtLastUserAction, isLoading },
     pricePerFullShare,
   } = vaultData
-  const { hasAutoEarnings, autoXaloToDisplay, autoUsdToDisplay } = getKalosVaultEarnings(
+  const { hasAutoEarnings, autoXaloToDisplay, autoUsdToDisplay } = getXaloVaultEarnings(
     account,
     xaloAtLastUserAction,
     userShares,
     pricePerFullShare,
     earningTokenPrice,
-    vaultKey === VaultKey.KalosVault
+    vaultKey === VaultKey.XaloVault
       ? (vaultData as DeserializedPoolLockedVault).userData.currentPerformanceFee
           .plus((vaultData as DeserializedPoolLockedVault).userData.currentOverdueFee)
           .plus((vaultData as DeserializedPoolLockedVault).userData.userBoostedShare)
@@ -56,7 +56,7 @@ const AutoEarningsCell: React.FC<AutoEarningsCellProps> = ({ pool, account }) =>
     placement: 'bottom',
   })
 
-  if (vaultKey === VaultKey.KalosVault && !userShares.gt(0)) {
+  if (vaultKey === VaultKey.XaloVault && !userShares.gt(0)) {
     return null
   }
 

@@ -59,7 +59,7 @@ const FarmRow: React.FunctionComponent<RowProps> = ({ earned, farm, staked, apr,
   const isLargerScreen = isXl || isXxl
   const [expanded, setExpanded] = useState(false)
   const shouldRenderActionPanel = useDelayedUnmount(expanded, 300)
-  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('KALOS', '')
+  const lpLabel = farm.lpSymbol && farm.lpSymbol.toUpperCase().replace('PANCAKE', '')
 
   const { stakedBalance } = useFarmUser(farm.pid)
 

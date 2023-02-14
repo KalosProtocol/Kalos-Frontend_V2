@@ -23,7 +23,7 @@ export default {
     56: '0x5aF6D33DE2ccEC94efb1bDF8f92Bd58085432d2c',
   },
   multiCall: {
-    56: '0x21Cbc38145a637Ec70b6f83e43a4c66771A464D1',
+    56: '0x1A0A96959e0Cf5A0b9c93Cc68Ef3fe1dDA7Dc829',
     97: '0x8F3273Fb89B075b1645095ABaC6ed17B2d4Bc576',
   },
   pancakeProfile: {
@@ -70,7 +70,7 @@ export default {
     56: '0x23c41D28A239dDCAABd1bb1deF8d057189510066',
     97: '0x24ec6962dbe874F6B67B5C50857565667fA0854F',
   },
-  kalosVault: {
+  xaloVault: {
     56: mainnetKalosVault.address,
     97: testnetKalosVault.address,
   },

@@ -36,7 +36,7 @@ const UnstakeButton: React.FC<UnstakeButtonProps> = ({ pool }) => {
   const { userShares } = vaultPoolData.userData
 
   const vaultPoolContract = useMemo(() => {
-    return vaultKey === VaultKey.KalosVaultV1
+    return vaultKey === VaultKey.XaloVaultV1
       ? getContract(xaloVaultAbi, xaloVaultAddress, library.getSigner())
       : getContract(ifoPoolAbi, ifoPoolV1Contract, library.getSigner())
   }, [library, vaultKey])

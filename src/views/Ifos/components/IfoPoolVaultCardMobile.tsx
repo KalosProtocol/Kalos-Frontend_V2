@@ -16,7 +16,7 @@ import { vaultPoolConfig } from 'config/constants/pools'
 import { DeserializedPool, VaultKey } from 'state/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useConfig } from 'views/Ifos/contexts/IfoContext'
-import { KalosVaultDetail } from 'views/Pools/components/KalosVaultCard'
+import { XaloVaultDetail } from 'views/Pools/components/XaloVaultCard'
 
 const StyledCardMobile = styled(Card)`
   max-width: 400px;
@@ -56,13 +56,13 @@ const IfoPoolVaultCardMobile: React.FC<IfoPoolVaultCardMobileProps> = ({ pool })
       <CardHeader p="16px">
         <Flex justifyContent="space-between" alignItems="center">
           <StyledTokenContent alignItems="center" flex={1}>
-            <UITokenPairImage width={24} height={24} {...vaultPoolConfig[VaultKey.KalosVault].tokenImage} />
+            <UITokenPairImage width={24} height={24} {...vaultPoolConfig[VaultKey.XaloVault].tokenImage} />
             <Box ml="8px" width="180px">
               <Text small bold>
-                {vaultPoolConfig[VaultKey.KalosVault].name}
+                {vaultPoolConfig[VaultKey.XaloVault].name}
               </Text>
               <Text color="textSubtle" fontSize="12px">
-                {vaultPoolConfig[VaultKey.KalosVault].description}
+                {vaultPoolConfig[VaultKey.XaloVault].description}
               </Text>
             </Box>
           </StyledTokenContent>
@@ -76,7 +76,7 @@ const IfoPoolVaultCardMobile: React.FC<IfoPoolVaultCardMobileProps> = ({ pool })
         </Flex>
       </CardHeader>
       {isExpanded && (
-        <KalosVaultDetail
+        <XaloVaultDetail
           showICake
           isLoading={isLoading}
           account={account}

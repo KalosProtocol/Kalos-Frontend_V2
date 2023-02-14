@@ -5,7 +5,7 @@ import { Dispatch, useMemo, memo, SetStateAction, useCallback } from 'react'
 import styled from 'styled-components'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 import { getFullDecimalMultiplier } from 'utils/getFullDecimalMultiplier'
-import { useUserEnoughXaloValidator } from '../hooks/useUserEnoughXaloValidator'
+import { useUserEnoughCakeValidator } from '../hooks/useUserEnoughCakeValidator'
 
 const StyledButton = styled(Button)`
   flex-grow: 1;
@@ -33,7 +33,7 @@ const BalanceField: React.FC<PropsType> = ({
   stakingTokenBalance,
 }) => {
   const { t } = useTranslation()
-  const { userNotEnoughXalo, notEnoughErrorMessage } = useUserEnoughXaloValidator(lockedAmount, stakingTokenBalance)
+  const { userNotEnoughCake, notEnoughErrorMessage } = useUserEnoughCakeValidator(lockedAmount, stakingTokenBalance)
 
   const percent = useMemo(() => {
     const amount = new BigNumber(lockedAmount)
@@ -70,7 +70,7 @@ const BalanceField: React.FC<PropsType> = ({
     <>
       <Flex alignItems="center" justifyContent="space-between" mb="8px">
         <Text color="textSubtle" textTransform="uppercase" bold fontSize="12px">
-          {t('XALO to lock')}
+          {t('CAKE to lock')}
         </Text>
         <Flex alignItems="center" minWidth="70px">
           <Image src={`/images/tokens/${stakingAddress}.png`} width={24} height={24} alt={stakingSymbol} />

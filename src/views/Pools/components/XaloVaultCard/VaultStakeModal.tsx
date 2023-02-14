@@ -29,7 +29,7 @@ import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'
 import useToast from 'hooks/useToast'
 import useCatchTxError from 'hooks/useCatchTxError'
-import { fetchKalosVaultUserData } from 'state/pools'
+import { fetchXaloVaultUserData } from 'state/pools'
 import { DeserializedPool, VaultKey } from 'state/types'
 import { getInterestBreakdown } from 'utils/compoundApyHelpers'
 import { ToastDescriptionWithTx } from 'components/Toast'
@@ -160,7 +160,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
         </ToastDescriptionWithTx>,
       )
       onDismiss?.()
-      dispatch(fetchKalosVaultUserData({ account }))
+      dispatch(fetchXaloVaultUserData({ account }))
     }
   }
 
@@ -168,7 +168,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
     const receipt = await fetchWithCatchTxError(() => {
       // .toString() being called to fix a BigNumber error in prod
       // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
-      const extraArgs = pool.vaultKey === VaultKey.KalosVault ? [lockDuration.toString()] : []
+      const extraArgs = pool.vaultKey === VaultKey.XaloVault ? [lockDuration.toString()] : []
       const methodArgs = [convertedStakeAmount.toString(), ...extraArgs]
       return callWithGasPrice(vaultPoolContract, 'deposit', methodArgs, callOptions)
     })
@@ -181,7 +181,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
         </ToastDescriptionWithTx>,
       )
       onDismiss?.()
-      dispatch(fetchKalosVaultUserData({ account }))
+      dispatch(fetchXaloVaultUserData({ account }))
     }
   }
 
@@ -281,7 +281,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
           )}
         </Flex>
       )}
-      {pool.vaultKey === VaultKey.KalosVault && xaloAsNumberBalance ? (
+      {pool.vaultKey === VaultKey.XaloVault && xaloAsNumberBalance ? (
         <Box mt="8px" maxWidth="370px">
           <ConvertToLock stakingToken={stakingToken} currentStakedAmount={xaloAsNumberBalance} />
         </Box>

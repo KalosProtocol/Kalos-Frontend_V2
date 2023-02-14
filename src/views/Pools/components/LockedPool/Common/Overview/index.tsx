@@ -75,8 +75,8 @@ const Overview: React.FC<OverviewPropsType> = ({
           </Text>
         </Flex>
         <LightGreyCard>
-          <BalanceRow title={t('Xalo to be locked')} value={lockedAmount} newValue={newLockedAmount} decimals={2} />
-          <BalanceRow title="iXalo" decimals={2} value={formattediCake} newValue={newFormattediCake} />
+          <BalanceRow title={t('Cake to be locked')} value={lockedAmount} newValue={newLockedAmount} decimals={2} />
+          <BalanceRow title="iCake" decimals={2} value={formattediCake} newValue={newFormattediCake} />
           <BalanceRow
             title="apy"
             unit="%"
@@ -124,7 +124,7 @@ const Overview: React.FC<OverviewPropsType> = ({
         <Box mt="16px" maxWidth="370px">
           <Message variant="warning">
             <MessageText>
-              {t('You will be able to withdraw the staked XALO and profit only when the staking position is unlocked')}
+              {t('You will be able to withdraw the staked CAKE and profit only when the staking position is unlocked')}
             </MessageText>
           </Message>
         </Box>

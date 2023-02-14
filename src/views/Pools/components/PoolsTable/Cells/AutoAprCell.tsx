@@ -42,10 +42,10 @@ const AutoAprCell: React.FC<AprCellProps> = ({ pool }) => {
     <VaultRoiCalculatorModal pool={pool} initialView={1} />,
     true,
     true,
-    pool.vaultKey === VaultKey.KalosVault ? 'LockedVaultRoiCalculatorModal' : 'FlexibleSideVaultRoiCalculatorModal',
+    pool.vaultKey === VaultKey.XaloVault ? 'LockedVaultRoiCalculatorModal' : 'FlexibleSideVaultRoiCalculatorModal',
   )
 
-  if (pool.vaultKey === VaultKey.KalosVault && vaultPosition === VaultPosition.None) {
+  if (pool.vaultKey === VaultKey.XaloVault && vaultPosition === VaultPosition.None) {
     return (
       <>
         <BaseCell role="cell" flex={['1 0 50px', '4.5', '1 0 120px', null, '2 0 100px']}>

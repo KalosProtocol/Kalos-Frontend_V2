@@ -3,9 +3,9 @@ import {
   SerializedFarm,
   DeserializedPool,
   SerializedPool,
-  SerializedKalosVault,
-  DeserializedKalosVault,
-  SerializedLockedKalosVault,
+  SerializedXaloVault,
+  DeserializedXaloVault,
+  SerializedLockedXaloVault,
   VaultKey,
 } from 'state/types'
 import { deserializeToken } from 'state/user/hooks/helpers'
@@ -67,7 +67,7 @@ export const transformPool = (pool: SerializedPool): DeserializedPool => {
   }
 }
 
-export const transformVault = (vaultKey: VaultKey, vault: SerializedKalosVault): DeserializedKalosVault => {
+export const transformVault = (vaultKey: VaultKey, vault: SerializedXaloVault): DeserializedXaloVault => {
   const {
     totalShares: totalSharesAsString,
     pricePerFullShare: pricePerFullShareAsString,
@@ -87,7 +87,7 @@ export const transformVault = (vaultKey: VaultKey, vault: SerializedKalosVault):
   const xaloAtLastUserAction = new BigNumber(xaloAtLastUserActionAsString)
   let userDataExtra
   let publicDataExtra
-  if (vaultKey === VaultKey.KalosVault) {
+  if (vaultKey === VaultKey.XaloVault) {
     const {
       totalXaloInVault: totalXaloInVaultAsString,
       totalLockedAmount: totalLockedAmountAsString,
@@ -100,7 +100,7 @@ export const transformVault = (vaultKey: VaultKey, vault: SerializedKalosVault):
         currentOverdueFee: currentOverdueFeeAsString,
         currentPerformanceFee: currentPerformanceFeeAsString,
       },
-    } = vault as SerializedLockedKalosVault
+    } = vault as SerializedLockedXaloVault
 
     const totalXaloInVault = new BigNumber(totalXaloInVaultAsString)
     const totalLockedAmount = new BigNumber(totalLockedAmountAsString)

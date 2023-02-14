@@ -27,7 +27,7 @@ const PriceLink = styled.a`
 const XaloPrice: React.FC<Props> = ({ xaloPriceUsd, color = "textSubtle", showSkeleton = true }) => {
   return xaloPriceUsd ? (
     <PriceLink
-      href="https://kalosdefi.finance/swap?outputCurrency=0x0739138e18B0273d8375F83EF5351d68E9285f1E"
+      href="https://kalosdefi.finance/swap?outputCurrency=0xE9E9b8001d86C36F971d046D64983738599C7385"
       target="_blank"
     >
       <LogoRound width="24px" mr="8px" />

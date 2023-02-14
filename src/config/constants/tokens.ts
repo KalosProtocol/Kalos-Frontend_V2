@@ -136,14 +136,6 @@ export const mainnetTokens = defineTokens({
     'Binance-Peg USD Coin',
     'https://www.centre.io/usdc',
   ),
-  shib: new Token(
-    MAINNET,
-    '0x2859e4544C4bB03966803b044A93563Bd2D0DD4D',
-    18,
-    'USDC',
-    'Binance-Peg SHIBA INU',
-    'https://shibatoken.com/ ',
-  ),
   kalm: new Token(
     MAINNET,
     '0x4BA0057f784858a48fe351445C672FF2a3d43515',

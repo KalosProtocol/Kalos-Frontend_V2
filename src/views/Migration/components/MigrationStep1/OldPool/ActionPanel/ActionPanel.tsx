@@ -3,7 +3,7 @@ import styled, { keyframes, css } from 'styled-components'
 import { DeserializedPool, VaultKey } from 'state/types'
 import { useVaultPoolByKeyV1 } from 'views/Migration/hook/V1/Pool/useFetchIfoPool'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { getKalosVaultEarnings } from 'views/Pools/helpers'
+import { getXaloVaultEarnings } from 'views/Pools/helpers'
 import Staked from './Stake'
 import AutoEarning from './AutoEarning'
 import Earning from './Earning'
@@ -79,7 +79,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ pool, account, expanded }) =>
   const { xaloAtLastUserAction, userShares } = vaultPoolData.userData
 
   const vaultPools = {
-    [VaultKey.KalosVaultV1]: useVaultPoolByKeyV1(VaultKey.KalosVaultV1).vaultPoolData,
+    [VaultKey.XaloVaultV1]: useVaultPoolByKeyV1(VaultKey.XaloVaultV1).vaultPoolData,
     [VaultKey.IfoPool]: useVaultPoolByKeyV1(VaultKey.IfoPool).vaultPoolData,
   }
   const xaloInVaults = Object.values(vaultPools).reduce((total, vault) => {
@@ -90,7 +90,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ pool, account, expanded }) =>
   let earningTokenBalance = 0
   let earningTokenDollarBalance = 0
   if (pricePerFullShare) {
-    const { autoXaloToDisplay, autoUsdToDisplay } = getKalosVaultEarnings(
+    const { autoXaloToDisplay, autoUsdToDisplay } = getXaloVaultEarnings(
       account,
       xaloAtLastUserAction,
       userShares,

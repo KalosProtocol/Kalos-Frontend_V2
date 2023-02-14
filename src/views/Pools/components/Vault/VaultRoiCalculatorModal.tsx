@@ -25,7 +25,7 @@ export const VaultRoiCalculatorModal = ({
   const { getLockedApy, flexibleApy } = useVaultApy()
   const { t } = useTranslation()
 
-  const [xaloVaultView, setKalosVaultView] = useState(initialView || 0)
+  const [xaloVaultView, setXaloVaultView] = useState(initialView || 0)
 
   const [duration, setDuration] = useState(() => weeksToSeconds(1))
 
@@ -72,14 +72,14 @@ export const VaultRoiCalculatorModal = ({
           : null
       }
       header={
-        pool.vaultKey === VaultKey.KalosVault ? (
+        pool.vaultKey === VaultKey.XaloVault ? (
           <ButtonMenu
             mb="24px"
             fullWidth
             scale="sm"
             variant="subtle"
             activeIndex={xaloVaultView}
-            onItemClick={setKalosVaultView}
+            onItemClick={setXaloVaultView}
           >
             {buttonMenuItems}
           </ButtonMenu>

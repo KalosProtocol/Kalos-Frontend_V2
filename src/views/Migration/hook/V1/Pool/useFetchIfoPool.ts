@@ -22,13 +22,13 @@ const KalosVault = KALOS_CONTRACT_LIST.filter((contract) => contract.name === 'K
 export const ifoPoolV1Contract = '0x1B2A2f6ed4A1401E8C73B4c2B6172455ce2f78E8'
 export const xaloVaultAddress = KalosVault.address
 
-const getKalosVaultContract = (signer?: Signer | Provider) => {
+const getXaloVaultContract = (signer?: Signer | Provider) => {
   const signerOrProvider = signer ?? simpleRpcProvider
   return new Contract(xaloVaultAddress, xaloVaultAbi, signerOrProvider) as any
 }
 
 const fetchVaultUserV1 = async (account: string) => {
-  const contract = getKalosVaultContract()
+  const contract = getXaloVaultContract()
   try {
     const userContractResponse = await contract.userInfo(account)
     return {

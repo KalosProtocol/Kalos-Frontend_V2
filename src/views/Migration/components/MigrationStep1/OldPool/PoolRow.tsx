@@ -4,7 +4,7 @@ import useDelayedUnmount from 'hooks/useDelayedUnmount'
 import { DeserializedPool, VaultKey } from 'state/types'
 import { useVaultPoolByKeyV1 } from 'views/Migration/hook/V1/Pool/useFetchIfoPool'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { getKalosVaultEarnings } from 'views/Pools/helpers'
+import { getXaloVaultEarnings } from 'views/Pools/helpers'
 import { useMatchBreakpointsContext } from '@pancakeswap/uikit'
 import NameCell from './Cells/NameCell'
 import StakedCell from './Cells/StakedCell'
@@ -62,7 +62,7 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account }) => {
   const { xaloAtLastUserAction, userShares } = vaultPoolData.userData
 
   const vaultPools = {
-    [VaultKey.KalosVaultV1]: useVaultPoolByKeyV1(VaultKey.KalosVaultV1).vaultPoolData,
+    [VaultKey.XaloVaultV1]: useVaultPoolByKeyV1(VaultKey.XaloVaultV1).vaultPoolData,
     [VaultKey.IfoPool]: useVaultPoolByKeyV1(VaultKey.IfoPool).vaultPoolData,
   }
   const xaloInVaults = Object.values(vaultPools).reduce((total, vault) => {
@@ -72,7 +72,7 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account }) => {
   // Auto Earning
   let earningTokenBalance = 0
   if (pricePerFullShare) {
-    const { autoXaloToDisplay } = getKalosVaultEarnings(
+    const { autoXaloToDisplay } = getXaloVaultEarnings(
       account,
       xaloAtLastUserAction,
       userShares,
@@ -91,7 +91,7 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account }) => {
 
   const EarningComponent = () => {
     if (isLargerScreen || !expanded) {
-      return pool.vaultKey === VaultKey.IfoPool || pool.vaultKey === VaultKey.KalosVaultV1 ? (
+      return pool.vaultKey === VaultKey.IfoPool || pool.vaultKey === VaultKey.XaloVaultV1 ? (
         <AutoEarningsCell hasEarnings={hasEarnings} earningTokenBalance={earningTokenBalance} />
       ) : (
         <EarningsCell pool={pool} account={account} />

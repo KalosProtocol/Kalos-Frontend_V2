@@ -44,7 +44,7 @@ const PredictionCardContent = () => {
   const cakeWonInUsd = multiplyPriceByAmount(xaloPriceBusd, data?.totalWonCAKE || 0)
 
   const localisedBnbUsdString = formatLocalisedCompactNumber(bnbWonInUsd + cakeWonInUsd)
-  const bnbWonText = t('$%wonInUsd% in BNB + XALO won so far', { wonInUsd: localisedBnbUsdString })
+  const bnbWonText = t('$%wonInUsd% in BNB + CAKE won so far', { wonInUsd: localisedBnbUsdString })
   const [pretext, wonSoFar] = bnbWonText.split(localisedBnbUsdString)
 
   useEffect(() => {

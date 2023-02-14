@@ -1,14 +1,14 @@
 import BigNumber from 'bignumber.js'
 import { multicallv2 } from 'utils/multicall'
-import kalosVaultAbi from 'config/abi/xaloVaultV2.json'
-import { getKalosVaultAddress, getXaloFlexibleSideVaultAddress } from 'utils/addressHelpers'
+import xaloVaultAbi from 'config/abi/xaloVaultV2.json'
+import { getXaloVaultAddress, getXaloFlexibleSideVaultAddress } from 'utils/addressHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getXaloContract } from 'utils/contractHelpers'
 
-const kalosVault = getKalosVaultAddress()
+const xaloVaultV2 = getXaloVaultAddress()
 const cakeFlexibleSideVaultV2 = getXaloFlexibleSideVaultAddress()
 const xaloContract = getXaloContract()
-export const fetchPublicVaultData = async (xaloVaultAddress = kalosVault) => {
+export const fetchPublicVaultData = async (xaloVaultAddress = xaloVaultV2) => {
   try {
     const calls = ['getPricePerFullShare', 'totalShares', 'totalLockedAmount'].map((method) => ({
       address: xaloVaultAddress,
@@ -16,10 +16,10 @@ export const fetchPublicVaultData = async (xaloVaultAddress = kalosVault) => {
     }))
 
     const [[[sharePrice], [shares], totalLockedAmount], totalXaloInVault] = await Promise.all([
-      multicallv2(kalosVaultAbi, calls, {
+      multicallv2(xaloVaultAbi, calls, {
         requireSuccess: false,
       }),
-      xaloContract.balanceOf(kalosVault),
+      xaloContract.balanceOf(xaloVaultV2),
     ])
 
     const totalSharesAsBigNumber = shares ? new BigNumber(shares.toString()) : BIG_ZERO
@@ -49,7 +49,7 @@ export const fetchPublicFlexibleSideVaultData = async (xaloVaultAddress = cakeFl
     }))
 
     const [[[sharePrice], [shares]], totalXaloInVault] = await Promise.all([
-      multicallv2(kalosVaultAbi, calls, {
+      multicallv2(xaloVaultAbi, calls, {
         requireSuccess: false,
       }),
       xaloContract.balanceOf(xaloVaultAddress),
@@ -71,14 +71,14 @@ export const fetchPublicFlexibleSideVaultData = async (xaloVaultAddress = cakeFl
   }
 }
 
-export const fetchVaultFees = async (kalosVaultAddress = kalosVault) => {
+export const fetchVaultFees = async (xaloVaultAddress = xaloVaultV2) => {
   try {
     const calls = ['performanceFee', 'withdrawFee', 'withdrawFeePeriod'].map((method) => ({
-      address: kalosVaultAddress,
+      address: xaloVaultAddress,
       name: method,
     }))
 
-    const [[performanceFee], [withdrawalFee], [withdrawalFeePeriod]] = await multicallv2(kalosVaultAbi, calls)
+    const [[performanceFee], [withdrawalFee], [withdrawalFeePeriod]] = await multicallv2(xaloVaultAbi, calls)
 
     return {
       performanceFee: performanceFee.toNumber(),

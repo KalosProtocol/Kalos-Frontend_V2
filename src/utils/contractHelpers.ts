@@ -20,7 +20,7 @@ import {
   getClaimRefundAddress,
   getTradingCompetitionAddressEaster,
   getEasterNftAddress,
-  getKalosVaultAddress,
+  getXaloVaultAddress,
   getMulticallAddress,
   getBunnySpecialCakeVaultAddress,
   getBunnySpecialPredictionAddress,
@@ -65,7 +65,7 @@ import tradingCompetitionFanTokenAbi from 'config/abi/tradingCompetitionFanToken
 import tradingCompetitionMoboxAbi from 'config/abi/tradingCompetitionMobox.json'
 import tradingCompetitionMoDAbi from 'config/abi/tradingCompetitionMoD.json'
 import easterNftAbi from 'config/abi/easterNft.json'
-import kalosVaultAbi from 'config/abi/xaloVaultV2.json'
+import xaloVaultV2Abi from 'config/abi/xaloVaultV2.json'
 import cakeFlexibleSideVaultV2Abi from 'config/abi/xaloFlexibleSideVaultV2.json'
 import predictionsAbi from 'config/abi/predictions.json'
 import predictionsV1Abi from 'config/abi/predictionsV1.json'
@@ -122,7 +122,7 @@ import type {
   PancakeSquad,
   Erc721collection,
   PointCenterIfo,
-  kalosVault,
+  XaloVaultV2,
   XaloFlexibleSideVaultV2,
   TradingCompetitionMobox,
   ICake,
@@ -220,8 +220,8 @@ export const getTradingCompetitionContractMoD = (signer?: Signer | Provider) => 
 export const getEasterNftContract = (signer?: Signer | Provider) => {
   return getContract(easterNftAbi, getEasterNftAddress(), signer) as EasterNft
 }
-export const getKalosVaultContract = (signer?: Signer | Provider) => {
-  return getContract(kalosVaultAbi, getKalosVaultAddress(), signer) as kalosVault
+export const getXaloVaultV2Contract = (signer?: Signer | Provider) => {
+  return getContract(xaloVaultV2Abi, getXaloVaultAddress(), signer) as XaloVaultV2
 }
 
 export const getXaloFlexibleSideVaultV2Contract = (signer?: Signer | Provider) => {

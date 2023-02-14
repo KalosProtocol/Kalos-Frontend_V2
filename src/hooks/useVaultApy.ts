@@ -4,7 +4,7 @@ import _toString from 'lodash/toString'
 import { BLOCKS_PER_YEAR } from 'config'
 import masterChefAbi from 'config/abi/masterchef.json'
 import { useCallback, useMemo } from 'react'
-import { useKalosVault } from 'state/pools/hooks'
+import { useXaloVault } from 'state/pools/hooks'
 import useSWRImmutable from 'swr/immutable'
 import { getMasterChefAddress } from 'utils/addressHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
@@ -46,7 +46,7 @@ export function useVaultApy({ duration = MAX_LOCK_DURATION }: { duration?: numbe
     totalShares = BIG_ZERO,
     pricePerFullShare = BIG_ZERO,
     fees: { performanceFeeAsDecimal } = { performanceFeeAsDecimal: DEFAULT_PERFORMANCE_FEE_DECIMALS },
-  } = useKalosVault()
+  } = useXaloVault()
 
   const totalSharesAsEtherBN = useMemo(() => FixedNumber.from(totalShares.toString()), [totalShares])
   const pricePerFullShareAsEtherBN = useMemo(() => FixedNumber.from(pricePerFullShare.toString()), [pricePerFullShare])

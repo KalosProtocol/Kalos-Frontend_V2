@@ -1,15 +1,15 @@
 import { Text, Flex, Skeleton, Heading, Box, useMatchBreakpointsContext } from '@pancakeswap/uikit'
 import { useWeb3React } from '@web3-react/core'
-import { getKalosVaultEarnings } from 'views/Pools/helpers'
+import { getXaloVaultEarnings } from 'views/Pools/helpers'
 import { useTranslation } from 'contexts/Localization'
 import { BalanceWithLoading } from 'components/Balance'
 import { useVaultPoolByKey } from 'state/pools/hooks'
-import { DeserializedPool, VaultKey, DeserializedLockedKalosVault } from 'state/types'
+import { DeserializedPool, VaultKey, DeserializedLockedXaloVault } from 'state/types'
 import { getVaultPosition, VaultPosition } from 'utils/xaloPool'
 import { useVaultApy } from 'hooks/useVaultApy'
 
 import { ActionContainer, ActionTitles, ActionContent, RowActionContainer } from './styles'
-import UnstakingFeeCountdownRow from '../../KalosVaultCard/UnstakingFeeCountdownRow'
+import UnstakingFeeCountdownRow from '../../XaloVaultCard/UnstakingFeeCountdownRow'
 import useUserDataInVaultPresenter from '../../LockedPool/hooks/useUserDataInVaultPresenter'
 
 const AutoHarvestAction: React.FunctionComponent<DeserializedPool> = ({
@@ -26,24 +26,24 @@ const AutoHarvestAction: React.FunctionComponent<DeserializedPool> = ({
     userData: { userShares, xaloAtLastUserAction },
     pricePerFullShare,
   } = vaultData
-  const { hasAutoEarnings, autoXaloToDisplay, autoUsdToDisplay } = getKalosVaultEarnings(
+  const { hasAutoEarnings, autoXaloToDisplay, autoUsdToDisplay } = getXaloVaultEarnings(
     account,
     xaloAtLastUserAction,
     userShares,
     pricePerFullShare,
     earningTokenPrice,
-    vaultKey === VaultKey.KalosVault
-      ? (vaultData as DeserializedLockedKalosVault).userData.currentPerformanceFee
-          .plus((vaultData as DeserializedLockedKalosVault).userData.currentOverdueFee)
-          .plus((vaultData as DeserializedLockedKalosVault).userData.userBoostedShare)
+    vaultKey === VaultKey.XaloVault
+      ? (vaultData as DeserializedLockedXaloVault).userData.currentPerformanceFee
+          .plus((vaultData as DeserializedLockedXaloVault).userData.currentOverdueFee)
+          .plus((vaultData as DeserializedLockedXaloVault).userData.userBoostedShare)
       : null,
   )
 
   const { secondDuration, weekDuration } = useUserDataInVaultPresenter({
     lockStartTime:
-      vaultKey === VaultKey.KalosVault ? (vaultData as DeserializedLockedKalosVault).userData?.lockStartTime ?? '0' : '0',
+      vaultKey === VaultKey.XaloVault ? (vaultData as DeserializedLockedXaloVault).userData?.lockStartTime ?? '0' : '0',
     lockEndTime:
-      vaultKey === VaultKey.KalosVault ? (vaultData as DeserializedLockedKalosVault).userData?.lockEndTime ?? '0' : '0',
+      vaultKey === VaultKey.XaloVault ? (vaultData as DeserializedLockedXaloVault).userData?.lockEndTime ?? '0' : '0',
   })
 
   const { boostFactor } = useVaultApy({ duration: secondDuration })
@@ -118,7 +118,7 @@ const AutoHarvestAction: React.FunctionComponent<DeserializedPool> = ({
           </Flex>
         </ActionContent>
       </Box>
-      {!isMobile && vaultKey === VaultKey.KalosVault && (vaultData as DeserializedLockedKalosVault).userData.locked && (
+      {!isMobile && vaultKey === VaultKey.XaloVault && (vaultData as DeserializedLockedXaloVault).userData.locked && (
         <Box minWidth="123px">
           <ActionTitles>
             <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">

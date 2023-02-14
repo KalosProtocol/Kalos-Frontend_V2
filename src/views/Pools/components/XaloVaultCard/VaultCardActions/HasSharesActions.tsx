@@ -69,7 +69,7 @@ const HasSharesActions: React.FC<HasStakeActionProps> = ({ pool, stakingTokenBal
           </IconButton>
         </Flex>
       </Flex>
-      {pool.vaultKey === VaultKey.KalosVault && (
+      {pool.vaultKey === VaultKey.XaloVault && (
         <Box mb="16px">
           <ConvertToLock stakingToken={stakingToken} currentStakedAmount={xaloAsNumberBalance} />
         </Box>

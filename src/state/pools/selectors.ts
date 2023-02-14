@@ -30,32 +30,32 @@ export const makeVaultPoolByKey = (key) => createSelector([selectVault(key)], (v
 export const poolsWithVaultSelector = createSelector(
   [
     poolsWithUserDataLoadingSelector,
-    makeVaultPoolByKey(VaultKey.KalosVault),
+    makeVaultPoolByKey(VaultKey.XaloVault),
     makeVaultPoolByKey(VaultKey.XaloFlexibleSideVault),
   ],
-  (poolsWithUserDataLoading, deserializedLockedKalosVault, deserializedFlexibleSideKalosVault) => {
+  (poolsWithUserDataLoading, deserializedLockedXaloVault, deserializedFlexibleSideXaloVault) => {
     const { pools, userDataLoaded } = poolsWithUserDataLoading
     const xaloPool = pools.find((pool) => !pool.isFinished && pool.sousId === 0)
     const withoutCakePool = pools.filter((pool) => pool.sousId !== 0)
 
     const cakeAutoVault = {
       ...xaloPool,
-      ...deserializedLockedKalosVault,
-      vaultKey: VaultKey.KalosVault,
-      userData: { ...xaloPool.userData, ...deserializedLockedKalosVault.userData },
+      ...deserializedLockedXaloVault,
+      vaultKey: VaultKey.XaloVault,
+      userData: { ...xaloPool.userData, ...deserializedLockedXaloVault.userData },
     }
 
-    const lockedVaultPosition = getVaultPosition(deserializedLockedKalosVault.userData)
-    const hasFlexibleSideSharesStaked = deserializedFlexibleSideKalosVault.userData.userShares.gt(0)
+    const lockedVaultPosition = getVaultPosition(deserializedLockedXaloVault.userData)
+    const hasFlexibleSideSharesStaked = deserializedFlexibleSideXaloVault.userData.userShares.gt(0)
 
     const cakeAutoFlexibleSideVault =
       lockedVaultPosition > VaultPosition.Flexible || hasFlexibleSideSharesStaked
         ? [
             {
               ...xaloPool,
-              ...deserializedFlexibleSideKalosVault,
+              ...deserializedFlexibleSideXaloVault,
               vaultKey: VaultKey.XaloFlexibleSideVault,
-              userData: { ...xaloPool.userData, ...deserializedFlexibleSideKalosVault.userData },
+              userData: { ...xaloPool.userData, ...deserializedFlexibleSideXaloVault.userData },
             },
           ]
         : []

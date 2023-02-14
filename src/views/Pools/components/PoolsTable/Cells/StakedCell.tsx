@@ -44,7 +44,7 @@ const StakedCell: React.FC<StakedCellProps> = ({ pool, account }) => {
   )
 
   const labelText = `${pool.stakingToken.symbol} ${
-    pool.vaultKey === VaultKey.KalosVault && (vaultData as DeserializedPoolLockedVault).userData.locked
+    pool.vaultKey === VaultKey.XaloVault && (vaultData as DeserializedPoolLockedVault).userData.locked
       ? t('Locked')
       : t('Staked')
   }`
@@ -59,7 +59,7 @@ const StakedCell: React.FC<StakedCellProps> = ({ pool, account }) => {
       flex={
         pool.vaultKey === VaultKey.XaloFlexibleSideVault
           ? '1 0 162px'
-          : pool.vaultKey === VaultKey.KalosVault && !hasStaked
+          : pool.vaultKey === VaultKey.XaloVault && !hasStaked
           ? '1 0 120px'
           : '2 0 100px'
       }

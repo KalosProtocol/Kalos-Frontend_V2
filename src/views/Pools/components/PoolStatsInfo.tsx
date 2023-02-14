@@ -81,8 +81,8 @@ const PoolStatsInfo: React.FC<ExpandedFooterProps> = ({
       {showTotalStaked && (
         <TotalStaked totalStaked={vaultKey ? totalXaloInVault : totalStaked} stakingToken={stakingToken} />
       )}
-      {vaultKey === VaultKey.KalosVault && <TotalLocked totalLocked={totalLockedAmount} lockedToken={stakingToken} />}
-      {vaultKey === VaultKey.KalosVault && <DurationAvg />}
+      {vaultKey === VaultKey.XaloVault && <TotalLocked totalLocked={totalLockedAmount} lockedToken={stakingToken} />}
+      {vaultKey === VaultKey.XaloVault && <DurationAvg />}
       {!isFinished && stakingLimit && stakingLimit.gt(0) && (
         <MaxStakeRow
           small

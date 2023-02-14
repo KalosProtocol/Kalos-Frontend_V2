@@ -2,13 +2,13 @@ import { useMemo } from 'react'
 import { BOOST_WEIGHT, DURATION_FACTOR } from 'config/constants/pools'
 import BigNumber from 'bignumber.js'
 import _toNumber from 'lodash/toNumber'
-import { useKalosVault } from 'state/pools/hooks'
+import { useXaloVault } from 'state/pools/hooks'
 import { getFullDecimalMultiplier } from 'utils/getFullDecimalMultiplier'
 
 import formatSecondsToWeeks from '../../utils/formatSecondsToWeeks'
 
 export default function useAvgLockDuration() {
-  const { totalLockedAmount, totalShares, totalXaloInVault, pricePerFullShare } = useKalosVault()
+  const { totalLockedAmount, totalShares, totalXaloInVault, pricePerFullShare } = useXaloVault()
 
   const avgLockDurationsInSeconds = useMemo(() => {
     const flexibleCakeAmount = totalXaloInVault.minus(totalLockedAmount)

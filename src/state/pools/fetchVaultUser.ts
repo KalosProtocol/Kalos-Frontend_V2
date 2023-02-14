@@ -1,22 +1,22 @@
 import BigNumber from 'bignumber.js'
 import { SerializedLockedVaultUser, SerializedVaultUser } from 'state/types'
-import { getKalosVaultAddress } from 'utils/addressHelpers'
-import kalosVaultAbi from 'config/abi/xaloVaultV2.json'
+import { getXaloVaultAddress } from 'utils/addressHelpers'
+import xaloVaultAbi from 'config/abi/xaloVaultV2.json'
 import { multicallv2 } from 'utils/multicall'
 import { getXaloFlexibleSideVaultV2Contract } from '../../utils/contractHelpers'
 
-const kalosVaultAddress = getKalosVaultAddress()
+const xaloVaultAddress = getXaloVaultAddress()
 const flexibleSideVaultContract = getXaloFlexibleSideVaultV2Contract()
 
 export const fetchVaultUser = async (account: string): Promise<SerializedLockedVaultUser> => {
   try {
     const calls = ['userInfo', 'calculatePerformanceFee', 'calculateOverdueFee'].map((method) => ({
-      address: kalosVaultAddress,
+      address: xaloVaultAddress,
       name: method,
       params: [account],
     }))
 
-    const [userContractResponse, [currentPerformanceFee], [currentOverdueFee]] = await multicallv2(kalosVaultAbi, calls)
+    const [userContractResponse, [currentPerformanceFee], [currentOverdueFee]] = await multicallv2(xaloVaultAbi, calls)
     return {
       isLoading: false,
       userShares: new BigNumber(userContractResponse.shares.toString()).toJSON(),

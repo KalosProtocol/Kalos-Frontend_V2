@@ -21,7 +21,7 @@ import {
   getTradingCompetitionContractMoD,
   getEasterNftContract,
   getErc721Contract,
-  getKalosVaultContract,
+  getXaloVaultV2Contract,
   getPredictionsContract,
   getChainlinkOracleContract,
   getLotteryV2Contract,
@@ -49,7 +49,7 @@ import {
   Weth,
   Xalo,
   Erc721collection,
-  KalosVaultV2,
+  XaloVaultV2,
   XaloFlexibleSideVaultV2,
 } from 'config/abi/types'
 
@@ -216,11 +216,11 @@ export const useEasterNftContract = () => {
   return useMemo(() => getEasterNftContract(library.getSigner()), [library])
 }
 
-export const useVaultPoolContract = (vaultKey: VaultKey): KalosVaultV2 | XaloFlexibleSideVaultV2 => {
+export const useVaultPoolContract = (vaultKey: VaultKey): XaloVaultV2 | XaloFlexibleSideVaultV2 => {
   const { library } = useActiveWeb3React()
   return useMemo(() => {
-    if (vaultKey === VaultKey.KalosVault) {
-      return getKalosVaultContract(library.getSigner())
+    if (vaultKey === VaultKey.XaloVault) {
+      return getXaloVaultV2Contract(library.getSigner())
     }
     if (vaultKey === VaultKey.XaloFlexibleSideVault) {
       return getXaloFlexibleSideVaultV2Contract(library.getSigner())
@@ -229,13 +229,13 @@ export const useVaultPoolContract = (vaultKey: VaultKey): KalosVaultV2 | XaloFle
   }, [library, vaultKey])
 }
 
-export const useKalosVaultContract = (withSignerIfPossible = true) => {
+export const useXaloVaultContract = (withSignerIfPossible = true) => {
   const { library, account } = useActiveWeb3React()
   const signer = useMemo(
     () => (withSignerIfPossible ? getProviderOrSigner(library, account) : null),
     [withSignerIfPossible, library, account],
   )
-  return useMemo(() => getKalosVaultContract(signer), [signer])
+  return useMemo(() => getXaloVaultV2Contract(signer), [signer])
 }
 
 export const usePredictionsContract = (address: string, tokenSymbol: string) => {
@@ -244,7 +244,7 @@ export const usePredictionsContract = (address: string, tokenSymbol: string) => 
     if (address === getPredictionsV1Address()) {
       return getPredictionsV1Contract(library.getSigner())
     }
-    const getPredContract = tokenSymbol === 'XALO' ? getCakePredictionsContract : getPredictionsContract
+    const getPredContract = tokenSymbol === 'CAKE' ? getCakePredictionsContract : getPredictionsContract
 
     return getPredContract(address, library.getSigner())
   }, [library, address, tokenSymbol])
@@ -259,7 +259,7 @@ export const useChainlinkOracleContract = (address, withSignerIfPossible = true)
   return useMemo(() => getChainlinkOracleContract(address, signer), [signer, address])
 }
 
-export const useSpecialBunnyKalosVaultContract = () => {
+export const useSpecialBunnyXaloVaultContract = () => {
   const { library } = useActiveWeb3React()
   return useMemo(() => getBunnySpecialCakeVaultContract(library.getSigner()), [library])
 }

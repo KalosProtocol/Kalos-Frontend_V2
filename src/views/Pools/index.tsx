@@ -24,10 +24,10 @@ import Loading from 'components/Loading'
 import { useInitialBlock } from 'state/block/hooks'
 import { BSC_BLOCK_TIME } from 'config'
 import PoolCard from './components/PoolCard'
-import KalosVaultCard from './components/KalosVaultCard'
+import XaloVaultCard from './components/XaloVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import PoolsTable from './components/PoolsTable/PoolsTable'
-import { getKalosVaultEarnings } from './helpers'
+import { getXaloVaultEarnings } from './helpers'
 
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
@@ -109,13 +109,13 @@ const sortPools = (account: string, sortOption: string, pools: DeserializedPool[
             if (!userData || !userData.userShares) {
               return 0
             }
-            return getKalosVaultEarnings(
+            return getXaloVaultEarnings(
               account,
               userData.xaloAtLastUserAction,
               userData.userShares,
               pricePerFullShare,
               pool.earningTokenPrice,
-              pool.vaultKey === VaultKey.KalosVault
+              pool.vaultKey === VaultKey.XaloVault
                 ? (pool as DeserializedPoolLockedVault).userData.currentPerformanceFee.plus(
                     (pool as DeserializedPoolLockedVault).userData.currentOverdueFee,
                   )
@@ -247,7 +247,7 @@ const Pools: React.FC = () => {
     <CardLayout>
       {chosenPools.map((pool) =>
         pool.vaultKey ? (
-          <KalosVaultCard key={pool.vaultKey} pool={pool} showStakedOnly={stakedOnly} />
+          <XaloVaultCard key={pool.vaultKey} pool={pool} showStakedOnly={stakedOnly} />
         ) : (
           <PoolCard key={pool.sousId} pool={pool} account={account} />
         ),

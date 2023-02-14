@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js'
 import { UNLOCK_FREE_DURATION, BOOST_WEIGHT, DURATION_FACTOR, MAX_LOCK_DURATION } from 'config/constants/pools'
 import { addWeeks, addDays } from 'date-fns'
 import { VaultPosition, getVaultPosition } from './xaloPool'
-import { getKalosVaultContract } from './contractHelpers'
+import { getXaloVaultV2Contract } from './contractHelpers'
 
 describe('xaloPool', () => {
   it.each([
@@ -11,7 +11,7 @@ describe('xaloPool', () => {
     ['DURATION_FACTOR', DURATION_FACTOR],
     ['MAX_LOCK_DURATION', MAX_LOCK_DURATION],
   ])('%s should be equal to SC: %s', async (method, result) => {
-    const xaloVault = getKalosVaultContract()
+    const xaloVault = getXaloVaultV2Contract()
     const got = await xaloVault[method]()
     expect(got.eq(result)).toBe(true)
   })

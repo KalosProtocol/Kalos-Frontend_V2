@@ -38,7 +38,7 @@ const Staked: React.FC<StakedProps> = ({ earned, farm }) => {
     <Container>
       <ActionTitles>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="4px">
-          {`XALO ${t('Earned')}`}
+          {`CAKE ${t('Earned')}`}
         </Text>
       </ActionTitles>
       <ActionContent>

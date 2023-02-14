@@ -1,8 +1,8 @@
 {
   "short_name": "PancakeSwap",
-  "name": "KalosDeFi",
-  "description": "Farm XALO with Kalos LP Tokens",
-  "homepage_url": "https://kalosdefi.finance",
+  "name": "PancakeSwap",
+  "description": "Farm CAKE with Pancake LP Tokens",
+  "homepage_url": "https://pancakeswap.finance",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#1FC7D4",
