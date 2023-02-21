@@ -69,10 +69,10 @@ const config: (t: ContextApi['t'], isDark: boolean, languageCode?: string) => Co
         label: t('Farms'),
         href: '/farms',
       },
-      {
+      /* {
         label: t('Pools'),
         href: '/pools',
-      },
+      }, */
     ],
   },
   {
