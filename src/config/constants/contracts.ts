@@ -79,7 +79,7 @@ export default {
     97: '',
   },
   predictionsBNB: {
-    56: '0x18B2A687610328590Bc8F2e5fEdDe3b582A49cdA',
+    56: '0x74eF9834eE2975A14dbdD0a0A134E9344C41cded',
     97: '',
   },
   predictionsCAKE: {
@@ -87,7 +87,7 @@ export default {
     97: '',
   },
   chainlinkOracleBNB: {
-    56: '0xD276fCF34D54A926773c399eBAa772C12ec394aC',
+    56: '0x8D3BD059FF4f57207B6Ec2393Eb51B3229A41198',
     97: '',
   },
   chainlinkOracleCAKE: {
