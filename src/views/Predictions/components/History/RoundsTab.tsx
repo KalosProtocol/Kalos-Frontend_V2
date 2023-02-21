@@ -8,7 +8,7 @@ import { fetchNodeHistory } from 'state/predictions'
 import { useConfig } from 'views/Predictions/context/ConfigProvider'
 import { useGetCurrentHistoryPage, useGetHasHistoryLoaded, useGetIsFetchingHistory } from 'state/predictions/hooks'
 import HistoricalBet from './HistoricalBet'
-import V1ClaimCheck from '../v1/V1ClaimCheck'
+// import V1ClaimCheck from '../v1/V1ClaimCheck'
 
 interface RoundsTabProps {
   hasBetHistory: boolean
@@ -28,7 +28,7 @@ const RoundsTab: React.FC<RoundsTabProps> = ({ hasBetHistory, bets }) => {
     dispatch(fetchNodeHistory({ account, page: currentHistoryPage + 1 }))
   }
 
-  const v1Claim = token.symbol === 'BNB' ? <V1ClaimCheck /> : null
+  // const v1Claim = token.symbol === 'BNB' ? <V1ClaimCheck /> : null
 
   return hasBetHistory ? (
     <>
