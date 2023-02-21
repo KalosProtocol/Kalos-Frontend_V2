@@ -87,7 +87,7 @@ const config: (t: ContextApi['t'], isDark: boolean, languageCode?: string) => Co
         hideSubNav: true,
       }, */
       {
-        label: t('Prediction (BETA)'),
+        label: t('Prediction (V1BETA)'),
         href: '/prediction',
       },
       /* {

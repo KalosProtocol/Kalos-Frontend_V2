@@ -30,7 +30,7 @@ export const getBunnyFactoryAddress = () => {
   return getAddress(addresses.bunnyFactory)
 }
 export const getPredictionsV1Address = () => {
-  return getAddress(addresses.predictionsV1)
+  return getAddress(addresses.predictionsBNB)
 }
 export const getClaimRefundAddress = () => {
   return getAddress(addresses.claimRefund)
