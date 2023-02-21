@@ -7,12 +7,12 @@ import {
   EarnIcon,
   TrophyIcon,
   TrophyFillIcon,
-  NftIcon,
-  NftFillIcon,
+  // NftIcon,
+  // NftFillIcon,
   MoreIcon,
 } from '@pancakeswap/uikit'
 import { ContextApi } from 'contexts/Localization/types'
-import { nftsBaseUrl } from 'views/Nft/market/constants'
+// import { nftsBaseUrl } from 'views/Nft/market/constants'
 // import { perpLangMap } from 'utils/getPerpetualLanguageCode'
 // import { perpTheme } from 'utils/getPerpetualTheme'
 import { DropdownMenuItems } from '@pancakeswap/uikit/src/components/DropdownMenu/types'
@@ -38,7 +38,7 @@ const config: (t: ContextApi['t'], isDark: boolean, languageCode?: string) => Co
         label: t('Swap'),
         href: '/swap',
       },
-      {
+      /* {
         label: t('Limit'),
         href: '/limit-orders',
       },
@@ -75,27 +75,27 @@ const config: (t: ContextApi['t'], isDark: boolean, languageCode?: string) => Co
       },
     ],
   },
-  /* {
+  {
     label: t('Win'),
     href: '/prediction',
     icon: TrophyIcon,
     fillIcon: TrophyFillIcon,
     items: [
-      {
+      /* {
         label: t('Trading Competition'),
         href: '/competition',
         hideSubNav: true,
-      }, 
+      }, */
       {
         label: t('Prediction (BETA)'),
         href: '/prediction',
       },
-      {
+      /* {
         label: t('Lottery'),
         href: '/lottery',
-      },
+      }, */
     ],
-  }, */
+  }, 
   /* {
     label: t('NFT'),
     href: `${nftsBaseUrl}`,
