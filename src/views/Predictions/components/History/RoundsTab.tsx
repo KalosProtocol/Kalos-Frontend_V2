@@ -22,7 +22,7 @@ const RoundsTab: React.FC<RoundsTabProps> = ({ hasBetHistory, bets }) => {
   const hasHistoryLoaded = useGetHasHistoryLoaded()
   const currentHistoryPage = useGetCurrentHistoryPage()
   const isFetchingHistory = useGetIsFetchingHistory()
-  const { token } = useConfig()
+  // const { token } = useConfig()
 
   const handleClick = () => {
     dispatch(fetchNodeHistory({ account, page: currentHistoryPage + 1 }))
