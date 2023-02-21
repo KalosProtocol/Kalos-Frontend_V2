@@ -5,10 +5,10 @@ import { useTranslation } from 'contexts/Localization'
 import useLocalDispatch from 'contexts/LocalRedux/useLocalDispatch'
 import { Bet } from 'state/types'
 import { fetchNodeHistory } from 'state/predictions'
-// import { useConfig } from 'views/Predictions/context/ConfigProvider'
+import { useConfig } from 'views/Predictions/context/ConfigProvider'
 import { useGetCurrentHistoryPage, useGetHasHistoryLoaded, useGetIsFetchingHistory } from 'state/predictions/hooks'
 import HistoricalBet from './HistoricalBet'
-// import V1ClaimCheck from '../v1/V1ClaimCheck'
+import V1ClaimCheck from '../v1/V1ClaimCheck'
 
 interface RoundsTabProps {
   hasBetHistory: boolean
@@ -22,13 +22,13 @@ const RoundsTab: React.FC<RoundsTabProps> = ({ hasBetHistory, bets }) => {
   const hasHistoryLoaded = useGetHasHistoryLoaded()
   const currentHistoryPage = useGetCurrentHistoryPage()
   const isFetchingHistory = useGetIsFetchingHistory()
-  // const { token } = useConfig()
+  const { token } = useConfig()
 
   const handleClick = () => {
     dispatch(fetchNodeHistory({ account, page: currentHistoryPage + 1 }))
   }
 
-  // const v1Claim = token.symbol === 'BNB' ? <V1ClaimCheck /> : null
+  const v1Claim = token.symbol === 'BNB' ? <V1ClaimCheck /> : null
 
   return hasBetHistory ? (
     <>
