@@ -169,7 +169,7 @@ const OpenRoundCard: React.FC<OpenRoundCardProps> = ({
                   mb="4px"
                   disabled={!canEnterPosition || isBufferPhase}
                 >
-                  {t('Enter UP')}
+                  {t('Enter BULL')}
                 </Button>
                 <Button
                   variant="danger"
@@ -177,7 +177,7 @@ const OpenRoundCard: React.FC<OpenRoundCardProps> = ({
                   onClick={() => handleSetPosition(BetPosition.BEAR)}
                   disabled={!canEnterPosition || isBufferPhase}
                 >
-                  {t('Enter DOWN')}
+                  {t('Enter BEAR')}
                 </Button>
               </>
             ) : positionEnteredText ? (
