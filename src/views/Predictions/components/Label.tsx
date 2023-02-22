@@ -186,7 +186,7 @@ export const PricePairLabel: React.FC = () => {
           </Tooltip>
         )}
         <CoinSwitcher
-          isDefaultBnb={router.query.token === 'BNB' || (router.query.token === undefined && token.symbol === 'BNB')}
+          isDefaultBnb={router.query.token === 'CAKE' || (router.query.token === undefined && token.symbol === 'CAKE')}
           onTokenSwitch={onTokenSwitch}
         />
         <Label dir="left" backgroundOpacity={!dismissTooltip}>
