@@ -66,7 +66,7 @@ const Notification: React.FC<NotificationProps> = ({ title, children }) => {
             router.push(router)
           }}
         >
-          <img src="/images/decorations/hiccup-bunny.png" alt="bunny decoration" height="121px" width="130px" />
+          <img src="/images/decorations/hiccup-bunny.png" alt="bunny decoration" height="96px" width="96px" />
         </BunnyDecoration>
         <Card>
           <CardBody>
