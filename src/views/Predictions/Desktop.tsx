@@ -210,7 +210,7 @@ const Desktop: React.FC = () => {
             }}
           >
             <PowerLinkStyle>
-              <img src="/images/powered-by-chainlink.png" alt="Powered by ChainLink" width="170px" height="48px" />
+              <img src="/images/powered-by-chainlink.svg" alt="Powered by ChainLink" width="170px" height="48px" />
             </PowerLinkStyle>
             <ExpandButtonGroup>
               <TabToggle

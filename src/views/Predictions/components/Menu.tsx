@@ -80,7 +80,7 @@ const Menu = () => {
                 <Button
                   variant="subtle"
                   as="a"
-                  href="https://docs.kalosdefi.finance/products/prediction"
+                  href="https://kalos-protocol.gitbook.io/kazien-protocol-documentations/"
                   target="_blank"
                   rel="noreferrer noopener"
                   width="48px"
