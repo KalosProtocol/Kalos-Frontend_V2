@@ -159,21 +159,31 @@ export const PricePairLabel: React.FC = () => {
   }, [])
 
   const onTokenSwitch = useCallback(() => {
-    if (router.query.token === PredictionSupportedSymbol.CAKE) {
-      router.query.token = PredictionSupportedSymbol.BNB
-    } else if (router.query.token === undefined && token.symbol === PredictionSupportedSymbol.CAKE) {
-      router.query.token = PredictionSupportedSymbol.BNB
-    } else if (router.query.token === undefined && token.symbol === PredictionSupportedSymbol.BNB) {
-      router.query.token = PredictionSupportedSymbol.CAKE
-    } else if (token.symbol === undefined && router.query.token === undefined) {
-      router.query.token = PredictionSupportedSymbol.BNB
-    } else {
-      router.query.token = PredictionSupportedSymbol.CAKE
+    switch (router.query.token) {
+      case PredictionSupportedSymbol.CAKE:
+        router.query.token = PredictionSupportedSymbol.BNB;
+        break;
+      case PredictionSupportedSymbol.BNB:
+        router.query.token = PredictionSupportedSymbol.BTCB;
+        break;
+      case PredictionSupportedSymbol.BTCB:
+        router.query.token = PredictionSupportedSymbol.CAKE;
+        break;
+      default:
+        // If router.query.token is undefined, set it to PredictionSupportedSymbol.BNB
+        // If token.symbol is undefined and router.query.token is undefined, set router.query.token to PredictionSupportedSymbol.BNB
+        // If token.symbol is PredictionSupportedSymbol.CAKE and router.query.token is undefined, set router.query.token to PredictionSupportedSymbol.BNB
+        if (router.query.token === undefined) {
+          if (token?.symbol === PredictionSupportedSymbol.CAKE) {
+            router.query.token = PredictionSupportedSymbol.BNB;
+          } else {
+            router.query.token = PredictionSupportedSymbol.BTCB;
+          }
+        }
+        break;
     }
-    if (!dismissTooltip) onDismissTooltip()
-
-    router.replace(router, undefined, { scroll: false })
-  }, [router, token, dismissTooltip, onDismissTooltip])
+    if (!dismissTooltip) onDismissTooltip();
+  }, [router.query.token, token, dismissTooltip, onDismissTooltip]);
   return (
     <>
       <Box pl={['20px', '20px', '20px', '20px', '40px']} position="relative" display="inline-block">
