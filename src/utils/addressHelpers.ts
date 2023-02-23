@@ -32,6 +32,12 @@ export const getBunnyFactoryAddress = () => {
 export const getPredictionsV1Address = () => {
   return getAddress(addresses.predictionsV1)
 }
+export const getPredictionsCake = () => {
+  return getAddress(addresses.predictionsCAKE)
+}
+export const getPredictionsBnb = () => {
+  return getAddress(addresses.predictionsBNB)
+}
 export const getClaimRefundAddress = () => {
   return getAddress(addresses.claimRefund)
 }
