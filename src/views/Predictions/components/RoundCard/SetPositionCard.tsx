@@ -23,7 +23,7 @@ import { useWeb3React } from '@web3-react/core'
 import { useGetMinBetAmount } from 'state/predictions/hooks'
 import { useTranslation } from 'contexts/Localization'
 import { usePredictionsContract } from 'hooks/useContract'
-import { useGetBnbBalance, useGetXaloBalance } from 'hooks/useTokenBalance'
+import { useGetBnbBalance, useGetCakeBalance } from 'hooks/useTokenBalance'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import useCatchTxError from 'hooks/useCatchTxError'
 import { BetPosition } from 'state/types'
@@ -78,7 +78,7 @@ const getValueAsEthersBn = (value: string) => {
 
 const TOKEN_BALANCE_CONFIG = {
   BNB: useGetBnbBalance,
-  XALO: useGetXaloBalance,
+  CAKE: useGetCakeBalance,
 }
 
 const SetPositionCard: React.FC<SetPositionCardProps> = ({ position, togglePosition, epoch, onBack, onSuccess }) => {
@@ -97,7 +97,7 @@ const SetPositionCard: React.FC<SetPositionCardProps> = ({ position, togglePosit
     return TOKEN_BALANCE_CONFIG[token.symbol]
   }, [token.symbol])
 
-  const { isVaultApproved, setLastUpdated } = useCakeApprovalStatus(token.symbol === 'XALO' ? predictionsAddress : null)
+  const { isVaultApproved, setLastUpdated } = useCakeApprovalStatus(token.symbol === 'CAKE' ? predictionsAddress : null)
   const { handleApprove, pendingTx } = useCakeApprove(
     setLastUpdated,
     predictionsAddress,
