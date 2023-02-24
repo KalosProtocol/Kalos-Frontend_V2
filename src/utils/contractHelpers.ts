@@ -98,6 +98,7 @@ import type {
   Erc20,
   Erc721,
   Xalo,
+  Cake,
   BunnyFactory,
   PancakeBunnies,
   PancakeProfile,
@@ -169,6 +170,9 @@ export const getPointCenterIfoContract = (signer?: Signer | Provider) => {
 }
 export const getXaloContract = (signer?: Signer | Provider) => {
   return getContract(xaloAbi, tokens.xalo.address, signer) as Xalo
+}
+export const getCakeContract = (signer?: Signer | Provider) => {
+  return getContract(xaloAbi, tokens.cake.address, signer) as Cake
 }
 export const getProfileContract = (signer?: Signer | Provider) => {
   return getContract(profileABI, getPancakeProfileAddress(), signer) as PancakeProfile

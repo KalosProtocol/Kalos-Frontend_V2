@@ -3,7 +3,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import {
   getBep20Contract,
   getXaloContract,
-  getCakeContract
+  getCakeContract,
   getBunnyFactoryContract,
   getBunnySpecialContract,
   getPancakeBunniesContract,
