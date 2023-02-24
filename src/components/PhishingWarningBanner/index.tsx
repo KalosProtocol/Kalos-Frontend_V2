@@ -39,13 +39,14 @@ const SpeechBubble = styled.div`
     margin-right: 4px;
   }
 `
+const domain = 'https://kalosdefi.finance'
 
 const PhishingWarningBanner: React.FC = () => {
   const { t } = useTranslation()
   const [, hideBanner] = usePhishingBannerManager()
-  const { isMobile, isMd } = useMatchBreakpointsContext()
+  const { isMobile, isMd } = useMatchBreakpoints()
   const warningTextAsParts = useMemo(() => {
-    const warningText = t("please make sure you're visiting https://kalosdefi.finance - check the URL carefully.")
+    const warningText = t("please make sure you're visiting %domain% - check the URL carefully.", { domain })
     return warningText.split(/(https:\/\/kalosdefi.finance)/g)
   }, [t])
   const warningTextComponent = (
@@ -59,8 +60,8 @@ const PhishingWarningBanner: React.FC = () => {
           key={i}
           small
           as="span"
-          bold={text === 'https://kalosdefi.finance'}
-          color={text === 'https://kalosdefi.finance' ? '#FFFFFF' : '#BDC2C4'}
+          bold={text === domain}
+          color={text === domain ? '#FFFFFF' : '#BDC2C4'}
         >
           {text}
         </Text>
