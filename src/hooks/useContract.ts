@@ -49,6 +49,7 @@ import {
   Multicall,
   Weth,
   Xalo,
+  Cake,
   Erc721collection,
   KalosVaultV2,
   XaloFlexibleSideVaultV2,
@@ -118,7 +119,7 @@ export const useXalo = (): { reader: Xalo; signer: Xalo } => {
   )
 }
 
-export const useCake = (): { reader: Xalo; signer: Xalo } => {
+export const useCake = (): { reader: Cake; signer: Cake } => {
   const { account, library } = useActiveWeb3React()
   return useMemo(
     () => ({
