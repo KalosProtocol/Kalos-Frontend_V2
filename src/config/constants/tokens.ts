@@ -33,7 +33,7 @@ export const mainnetTokens = defineTokens({
     18,
     'CAKE',
     'PancakeSwap Token',
-    'https://kalosdefi.finance/',
+    'https://pancakeswap.finance/',
   ),
   xalo: new Token(
     MAINNET,

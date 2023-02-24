@@ -9,7 +9,7 @@ import {
   IconButton,
   Button,
   BinanceIcon,
-  LogoIcon,
+  LogoCake,
   Text,
   BalanceInput,
   Slider,
@@ -38,7 +38,7 @@ import FlexRow from '../FlexRow'
 
 const LOGOS = {
   BNB: BinanceIcon,
-  CAKE: LogoIcon,
+  CAKE: LogoCake,
 }
 
 interface SetPositionCardProps {
