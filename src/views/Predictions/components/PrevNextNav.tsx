@@ -23,7 +23,7 @@ const StyledPrevNextNav = styled(Flex)`
 const Icon = styled.div`
   cursor: pointer;
   left: 50%;
-  margin-left: -32px;
+  margin-left: -22px;
   position: absolute;
 `
 
