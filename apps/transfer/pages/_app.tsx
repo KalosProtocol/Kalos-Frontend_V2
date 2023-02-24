@@ -67,7 +67,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           name="description"
           content="Kalos DeFi is cheap and fast the leading DEX on BNB Smart Chain (BSC) with the best farms in DeFi."
         />
-        <meta name="theme-color" content="#1FC7D4" />
+        <meta name="theme-color" content="#16759d" />
         <meta name="twitter:image" content="https://kalosdefi.finance/images/hero.png" />
         <meta
           name="twitter:description"

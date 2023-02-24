@@ -3,6 +3,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import {
   getBep20Contract,
   getXaloContract,
+  getCakeContract
   getBunnyFactoryContract,
   getBunnySpecialContract,
   getPancakeBunniesContract,
@@ -112,6 +113,17 @@ export const useXalo = (): { reader: Xalo; signer: Xalo } => {
     () => ({
       reader: getXaloContract(null),
       signer: getXaloContract(getProviderOrSigner(library, account)),
+    }),
+    [account, library],
+  )
+}
+
+export const useCake = (): { reader: Xalo; signer: Xalo } => {
+  const { account, library } = useActiveWeb3React()
+  return useMemo(
+    () => ({
+      reader: getCakeContract(null),
+      signer: getCakeContract(getProviderOrSigner(library, account)),
     }),
     [account, library],
   )
