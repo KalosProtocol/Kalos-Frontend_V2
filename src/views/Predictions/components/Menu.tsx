@@ -63,9 +63,14 @@ const Menu = () => {
 
   return (
     <FlexRow alignItems="center" p="16px" width="100%">
-      <SetCol>
-        <PricePairLabel />
-      </SetCol>
+      <Flex alignItems="center">
+        <SetCol>
+          <PricePairLabel />
+        </SetCol>
+        <Button ml="8px" variant="subtle" width="96px">
+          Select
+        </Button>
+      </Flex>
       {status === PredictionStatus.LIVE && (
         <>
           <FlexRow justifyContent="center">
