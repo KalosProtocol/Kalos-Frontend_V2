@@ -38,10 +38,10 @@ const config: (t: ContextApi['t'], isDark: boolean, languageCode?: string) => Co
         label: t('Swap'),
         href: '/swap',
       },
-      {
+      /* {
         label: t('Limit'),
         href: '/limit-orders',
-      }, 
+      }, */
       {
         label: t('Liquidity'),
         href: '/liquidity',
