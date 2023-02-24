@@ -180,7 +180,7 @@ export const PricePairLabel: React.FC = () => {
         {!dismissTooltip && (
           <Tooltip>
             <Text mr="5px" display="inline-block" verticalAlign="super">
-              {t('Switch pairs here.')}
+              {t('Choose your Asset.')}
             </Text>
             <CloseIcon cursor="pointer" onClick={onDismissTooltip} />
           </Tooltip>
