@@ -67,8 +67,10 @@ const Menu = () => {
         <SetCol>
           <PricePairLabel />
         </SetCol>
-        <Button ml="8px" variant="subtle" width="96px">
-          Select
+        <Button ml="12px" variant="subtle" width="60px">
+        <Link href="/prediction?token=BNB" passHref>
+        <BinanceIcon width="24px" />
+        </Link>
         </Button>
       </Flex>
       {status === PredictionStatus.LIVE && (
