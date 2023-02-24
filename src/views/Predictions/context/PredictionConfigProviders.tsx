@@ -20,7 +20,7 @@ const PredictionConfigProviders = ({ children }) => {
       return initToken
     }
 
-    return PredictionSupportedSymbol.BNB
+    return PredictionSupportedSymbol.CAKE
   })
 
   useEffect(() => {
