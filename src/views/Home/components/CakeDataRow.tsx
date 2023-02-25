@@ -62,7 +62,7 @@ const Grid = styled.div`
   }
 `
 
-const emissionsPerBlock = 9.9
+const emissionsPerBlock = 30
 
 /**
  * User (Planet Finance) built a contract on top of our original manual CAKE pool,
@@ -72,44 +72,41 @@ const emissionsPerBlock = 9.9
  * https://twitter.com/PancakeSwap/status/1523913527626702849
  * https://bscscan.com/tx/0xd5ffea4d9925d2f79249a4ce05efd4459ed179152ea5072a2df73cd4b9e88ba7
  */
-const planetFinanceBurnedTokensWei = BigNumber.from('637407922445268000000000')
-const cakeVaultAddress = getCakeVaultAddress()
+const planetFinanceBurnedTokensWei = BigNumber.from('1000000000000000000000')
+const KalosVault = getKalosVaultContract()
 
 const CakeDataRow = () => {
   const { t } = useTranslation()
   const { observerRef, isIntersecting } = useIntersectionObserver()
   const [loadData, setLoadData] = useState(false)
   const {
-    data: { cakeSupply, burnedBalance, circulatingSupply } = {
-      cakeSupply: 0,
+    data: { xaloSupply, burnedBalance, circulatingSupply } = {
+      xaloSupply: 0,
       burnedBalance: 0,
       circulatingSupply: 0,
     },
   } = useSWR(
     loadData ? ['cakeDataRow'] : null,
     async () => {
-      const totalSupplyCall = { abi: cakeAbi, address: bscTokens.cake.address, name: 'totalSupply' }
+      const totalSupplyCall = { address: tokens.xalo.address, name: 'totalSupply' }
       const burnedTokenCall = {
-        abi: cakeAbi,
-        address: bscTokens.cake.address,
+        address: tokens.xalo.address,
         name: 'balanceOf',
-        params: ['0x000000000000000000000000000000000000dEaD'],
+        params: ['0xc7799E49e05e2C868e5802Cec514a65061c68C02'],
       }
-      const cakeVaultCall = {
-        abi: cakeVaultV2Abi,
-        address: cakeVaultAddress,
-        name: 'totalLockedAmount',
-      }
+      const [tokenDataResultRaw, totalLockedAmount] = await Promise.all([
+        multicallv2(xaloAbi, [totalSupplyCall, burnedTokenCall], {
+          requireSuccess: false,
+        }),
+        KalosVault.totalLockedAmount(),
+      ])
+      const [totalSupply, burned] = tokenDataResultRaw.flat()
 
-      const [[totalSupply], [burned], [totalLockedAmount]] = await multicallv3({
-        calls: [totalSupplyCall, burnedTokenCall, cakeVaultCall],
-        allowFailure: true,
-      })
       const totalBurned = planetFinanceBurnedTokensWei.add(burned)
       const circulating = totalSupply.sub(totalBurned.add(totalLockedAmount))
 
       return {
-        cakeSupply: totalSupply && burned ? +formatBigNumber(totalSupply.sub(totalBurned)) : 0,
+        xaloSupply: totalSupply && burned ? +formatBigNumber(totalSupply.sub(totalBurned)) : 0,
         burnedBalance: burned ? +formatBigNumber(totalBurned) : 0,
         circulatingSupply: circulating ? +formatBigNumber(circulating) : 0,
       }
@@ -118,8 +115,8 @@ const CakeDataRow = () => {
       refreshInterval: SLOW_INTERVAL,
     },
   )
-  const cakePriceBusd = usePriceCakeBusd()
-  const mcap = cakePriceBusd.times(circulatingSupply)
+  const xaloPriceBusd = usePriceCakeBusd()
+  const mcap = xaloPriceBusd.times(circulatingSupply)
   const mcapString = formatLocalisedCompactNumber(mcap.toNumber())
 
   useEffect(() => {
@@ -140,8 +137,8 @@ const CakeDataRow = () => {
       </Flex>
       <StyledColumn noMobileBorder style={{ gridArea: 'b' }}>
         <Text color="textSubtle">{t('Total supply')}</Text>
-        {cakeSupply ? (
-          <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={cakeSupply} />
+        {xaloSupply ? (
+          <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={xaloSupply} />
         ) : (
           <>
             <div ref={observerRef} />
@@ -152,7 +149,7 @@ const CakeDataRow = () => {
       <StyledColumn noMobileBorder style={{ gridArea: 'c' }}>
         <Text color="textSubtle">{t('Max Supply')}</Text>
 
-        <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={750000000} />
+        <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={850000000} />
       </StyledColumn>
       <StyledColumn noDesktopBorder style={{ gridArea: 'd' }}>
         <Text color="textSubtle">{t('Market cap')}</Text>
@@ -173,7 +170,7 @@ const CakeDataRow = () => {
       <StyledColumn style={{ gridArea: 'f' }}>
         <Text color="textSubtle">{t('Current emissions')}</Text>
 
-        <Heading scale="lg">{t('%cakeEmissions%/block', { cakeEmissions: emissionsPerBlock })}</Heading>
+        <Heading scale="lg">{t('%xaloEmissions%/block', { xaloEmissions: emissionsPerBlock })}</Heading>
       </StyledColumn>
     </Grid>
   )
