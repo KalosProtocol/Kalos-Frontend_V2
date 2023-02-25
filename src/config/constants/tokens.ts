@@ -2176,14 +2176,14 @@ export const mainnetTokens = defineTokens({
 } as const)
 
 export const testnetTokens = defineTokens({
-  xalo: new Token(
+  /* xalo: new Token(
     TESTNET,
     testnetkalosToken.address,
     18,
     'XALO',
     'Kalosdefi Token',
     'https://kalosdefi.com/',
-  ),
+  ), */
   wbnb: new Token(
     TESTNET,
     '0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd',
