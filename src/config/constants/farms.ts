@@ -39,7 +39,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.xalo,
     quoteToken: serializedTokens.wbnb,
-    multiplier: '30X',
+    multiplier: '10X',
   },
   {
     pid: 1,
@@ -51,7 +51,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.cake,
     quoteToken: serializedTokens.wbnb,
-    multiplier: '30X',
+    multiplier: '3X',
   },
   {
     pid: 2,
@@ -63,7 +63,7 @@ const farms: SerializedFarmConfig[] = [
     },
     token: serializedTokens.wbnb,
     quoteToken: serializedTokens.busd,
-    multiplier: '30X',
+    multiplier: '3X',
   },
   {
     pid: 8,
